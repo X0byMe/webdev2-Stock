@@ -10,11 +10,22 @@
     if(isset($_GET['delete']))
     {
        
+        $req = $bdd->prepare("SELECT * FROM admin WHERE id=?");
+        $req->execute([$_GET['delete']]);
+        if(!$don = $req->fetch())
+        {
+            $req->closeCursor();
+            header("LOCATION:members.php");
+        }
+        $req->closeCursor();
 
+        // suppression
+        $delete = $bdd->prepare("DELETE FROM admin WHERE id=?");
+        $delete->execute([$_GET['delete']]);
+        $delete->closeCursor();
+        header("LOCATION:members.php?deletesuccess=".$_GET['delete']);
 
     }
-
-
 ?>
 
 <!DOCTYPE html>

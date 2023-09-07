@@ -95,6 +95,7 @@
                     {
                         // suppression du fichier
                         unlink("../images/".$don['image']);
+                        unlink("../images/mini_".$don['image']);
 
                         $update = $bdd->prepare("UPDATE products SET name=:name, description=:descri, price=:prix, image=:img WHERE id=:myid");
                         $update->execute([
@@ -105,6 +106,15 @@
                             ":myid" => $id
                         ]);
                         $update->closeCursor();
+
+                        if($extension == ".png")
+                        {
+                            header("LOCATION:redimpng.php?update=".$id."&image=".$fichiercpt);
+                        }else{
+                            header("LOCATION:redim.php?update=".$id."&image=".$fichiercpt);
+                        }
+
+
                         header("LOCATION:products.php?update=".$id);
 
                     }else{

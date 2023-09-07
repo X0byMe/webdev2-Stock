@@ -48,6 +48,12 @@ imagejpeg($destination,$rep_nom,80);
 
 // redirection
 
-header("LOCATION:jeux.php?addsuccess=ok");
+if(isset($_GET['update']))
+{
+    //GET update contient l'ID permetant d'identifier le produit modifé
+    header("LOCATION:products.php?update=".$_GET['update']);
+}else{
+    header("LOCATION:products.php?addsuccess=ok");
+}
 
 ?>

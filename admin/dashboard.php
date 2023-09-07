@@ -29,9 +29,7 @@
         include("partials/header.php")
     ?>
     <div class="container">
-       <a href="dashboard.php?deco=ok">Déconnexion</a>
-       <br>
-       <a href='products.php'>Gestion des produits</a>
+      
     </div>
 </body>
 </html>
